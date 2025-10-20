@@ -1,0 +1,147 @@
+// pages/index.js
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ShoppingCart, ShieldCheck, HeartPulse, Users } from "lucide-react";
+
+const products = [
+  {
+    name: "KneeBrace Pro",
+    desc: "Stabiliteit & rotatiecontrole — ondersteunt bij draaibewegingen en landingen.",
+    price: "€89",
+    img: "/images/kneebrace.png",
+  },
+  {
+    name: "AnkleBrace Lite",
+    desc: "Flexibel & dempend — schokabsorptie met behoud van souplesse.",
+    price: "€69",
+    img: "/images/anklebrace.png",
+  },
+  {
+    name: "WristGuard Voltige",
+    desc: "Polssteun bij landingen — bescherming zonder beperking.",
+    price: "€59",
+    img: "/images/wristguard.png",
+  },
+];
+
+export default function VoltigeBraceShop() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
+      {/* NAVIGATION */}
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-teal-400 rounded-full flex items-center justify-center text-white font-bold text-lg">V</div>
+          <span className="font-semibold text-lg">VoltiCare</span>
+        </div>
+        <div className="hidden md:flex items-center gap-6 text-sm">
+          <a href="#products" className="hover:underline">Producten</a>
+          <a href="#about" className="hover:underline">Over ons</a>
+          <a href="#contact" className="hover:underline">Contact</a>
+          <Button className="flex items-center gap-2 bg-indigo-600 text-white rounded-full px-4 py-2">
+            <ShoppingCart className="w-4 h-4" /> Shop nu
+          </Button>
+        </div>
+      </nav>
+
+      {/* HERO SECTION */}
+      <header className="bg-gradient-to-b from-gray-50 to-white py-20 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <h1 className="text-5xl font-bold leading-tight mb-4">
+              Beweeg vrij. Train veilig.<br />Met VoltiCare Braces.
+            </h1>
+            <p className="text-lg text-gray-700 mb-6">
+              Onze braces zijn speciaal ontworpen voor de voltigesport — maximale bescherming, zonder in te leveren op elegantie of bewegingsvrijheid. Ontwikkeld met fysiotherapeuten, getest door voltigeurs.
+            </p>
+            <div className="flex gap-4 flex-wrap">
+              <Button className="bg-indigo-600 text-white rounded-full px-6 py-3 text-lg">Shop nu</Button>
+              <Button variant="outline" className="rounded-full px-6 py-3 text-lg">Meer weten</Button>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="relative w-full h-80 md:h-96">
+            <Image src="/images/hero.png" alt="VoltiCare Braces" fill className="object-cover rounded-3xl shadow-xl" />
+          </motion.div>
+        </div>
+      </header>
+
+      {/* PRODUCT SECTION */}
+      <section id="products" className="max-w-6xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center mb-12">Onze producten</h2>
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+          {products.map((p) => (
+            <motion.div key={p.name} whileHover={{ scale: 1.05 }} className="transition">
+              <Card className="rounded-2xl shadow-md hover:shadow-lg transition">
+                <CardContent className="p-6 text-center">
+                  <div className="relative w-40 h-40 mx-auto mb-4">
+                    <Image src={p.img} alt={p.name} fill className="object-contain" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">{p.name}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{p.desc}</p>
+                  <div className="text-2xl font-bold mb-4">{p.price}</div>
+                  <Button className="bg-teal-500 text-white rounded-full px-6 py-2">Bestel nu</Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURES SECTION */}
+      <section id="about" className="bg-gray-50 py-20 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center">
+          <div>
+            <ShieldCheck className="mx-auto w-10 h-10 text-indigo-600 mb-3" />
+            <h4 className="font-semibold text-lg mb-2">Speciaal voor Voltige</h4>
+            <p className="text-gray-600 text-sm">Ontworpen op basis van de unieke bewegingen en belastingen van de voltigesport.</p>
+          </div>
+          <div>
+            <HeartPulse className="mx-auto w-10 h-10 text-teal-500 mb-3" />
+            <h4 className="font-semibold text-lg mb-2">Bescherming & Comfort</h4>
+            <p className="text-gray-600 text-sm">Gemaakt van ademende, flexibele materialen die bescherming bieden zonder beperking.</p>
+          </div>
+          <div>
+            <Users className="mx-auto w-10 h-10 text-indigo-600 mb-3" />
+            <h4 className="font-semibold text-lg mb-2">Getest door Atleten</h4>
+            <p className="text-gray-600 text-sm">Ontwikkeld in samenwerking met voltigeurs, trainers en fysiotherapeuten.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="py-20 text-center bg-gradient-to-r from-indigo-600 to-teal-500 text-white">
+        <h3 className="text-3xl font-bold mb-4">Klaar om met vertrouwen te trainen?</h3>
+        <p className="text-lg mb-8">Bestel jouw brace vandaag nog en ervaar het verschil tussen bescherming en beperking.</p>
+        <Button className="bg-white text-indigo-700 rounded-full px-8 py-3 text-lg font-semibold">Shop nu</Button>
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section id="contact" className="max-w-5xl mx-auto px-6 py-20">
+        <h3 className="text-3xl font-bold text-center mb-10">Contact</h3>
+        <div className="grid md:grid-cols-2 gap-10">
+          <div>
+            <p className="text-gray-700 mb-6">Heb je vragen, wil je samenwerken of distributiepartner worden? Neem gerust contact op. We horen graag van je!</p>
+            <ul className="text-gray-700 text-sm space-y-2">
+              <li><strong>VoltiCare</strong></li>
+              <li>Spoorstraat 62, 5911 KJ Venlo</li>
+              <li>Telefoon: 088 890 3899</li>
+              <li>Email: info@volticare.nl</li>
+            </ul>
+          </div>
+          <form className="space-y-4">
+            <input type="text" placeholder="Naam" className="w-full border rounded-md px-3 py-2" />
+            <input type="email" placeholder="E-mailadres" className="w-full border rounded-md px-3 py-2" />
+            <textarea placeholder="Bericht" rows={4} className="w-full border rounded-md px-3 py-2"></textarea>
+            <Button className="bg-indigo-600 text-white rounded-full px-6 py-2">Verstuur</Button>
+          </form>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-gray-900 text-white py-8 text-center text-sm">
+        © 2025 VoltiCare — Ontwikkeld door Niek Verdonschot | HAS Green Academy, Venlo
+      </footer>
+    </div>
+  );
+}
